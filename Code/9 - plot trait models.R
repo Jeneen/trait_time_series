@@ -6,6 +6,9 @@ library(RColorBrewer)
 palette <- brewer.pal(6, "Dark2")
 
 
+#load trait models from source
+source("Code/8 - run trait models.R")
+
 ###########################################################SIZE ########################################################################
 
 

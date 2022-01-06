@@ -1,10 +1,11 @@
+#load package
 library(mgcv)
 
 # biomass and abundance models
 
 #load data
 load("Data/abundance_av.rda")
-abundance_m <- filter(abundance_av, Reef2 != "Malindi")
+abundance_m <- filter(abundance_m, Reef2 != "Malindi")
 abundance_m$log_abun.ha <- log10(abundance_m$mean.abundance.ha)
 #add chl
 load(file = "Data/tsalag4_with_chl.rda")
@@ -14,7 +15,6 @@ chl <- filter(chl, !is.na(Reef))
 chl <- filter(chl, Reef2 != "Malindi")
 chl$year <- as.integer(chl$year)
 abundance_m <- left_join(abundance_m, chl)
-
 load("Data/biomass_av.rda")
 biomass_m <- filter(biomass_av, Reef2 != "Malindi")
 biomass_m$log.biomass.ha <- log10(biomass_m$mean.biomass.ha)
@@ -44,3 +44,4 @@ biomass_mod_reef <- gamm(log.biomass.ha ~ s(time_since_closure_sc, k=4, bs = "cr
                 data = biomass_m)
 summary(biomass_mod_reef$gam)
 gam.check(biomass_mod_reef$gam)
+

@@ -6,6 +6,10 @@ library(dplyr)
 #plot biomass and abundance
 source("Code/6 - run biomass and abundance models.R")
 
+#set color palette
+palette <-brewer.pal(n = 3, name = "Dark2")
+
+
 ############################################## BIOMASS #############################################################
 load("Data/biomass_av.rda")
 biomass_m <- filter(biomass_av, Reef2 != "Malindi")

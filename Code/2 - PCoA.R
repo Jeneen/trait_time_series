@@ -5,23 +5,25 @@ library(splitstackshape); library(FD); library(ggrepel)
 library(ggrepel); library(FD); library(fuzzySim)
 
 
+#functions
 '%!in%' <- function(x,y)!('%in%'(x,y))
 
 
+#load data
 load("Data/annual_tsa_mpa_max.rda") 
 load(file = "Data/kenya.rda")
 load("Data/traits_time_series_9fam.rda")
 load("Data/abundance_av.rda")
-abundance_av <- filter(abundance_av, Reef2 != "Malindi")
+abundance_av <- filter(abundance_m, Reef2 != "Malindi")
 
 
-
+#fix data names
 traits_time_series_9fam$Family.y <- NULL
+
+#add in thermal stress anomaly
 traits_tsa <- merge.data.frame(traits_time_series_9fam, tsa2, by.x = c("Reef2", "year"), by.y = c("Reef2", "year"), all = TRUE)
 
 #get average counts of species at sites per year
-library(tidyverse)
-
 traits_tsa$year <- as.factor(traits_tsa$year)
 traits_tsa_na <- filter(traits_tsa, !is.na(traits_tsa$count))
 traits_tsa_na$count <- as.numeric(traits_tsa_na$count)

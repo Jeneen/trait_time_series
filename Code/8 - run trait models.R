@@ -1,6 +1,10 @@
-#STEP 2: RUN TRAIT MODELS
+#RUN TRAIT MODELS
 
+#load package
 library(mgcv)
+
+#load data from source
+source("Code/1 - prep trait data.R")
 
 #size
 size_mod <- gam(logit ~ Size + s(time_since_closure_scaled, by = Size, k=4, bs = "cr") +

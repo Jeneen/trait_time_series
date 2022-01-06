@@ -1,10 +1,14 @@
+#load package
 library(RColorBrewer)
 
+#run previous code
 source("Code/4 - run PCoA models.r")
 
+#load data
 load("Data/tsalag4_with_chl.rda") 
-palette <-brewer.pal(n = 3, name = "Dark2")
 
+#set color palette
+palette <-brewer.pal(n = 3, name = "Dark2")
 
 
 #clean data
@@ -12,6 +16,7 @@ tsalag4 <- unique(tsalag4)
 
 #remove malindi
 tsalag4 <- filter(tsalag4, Reef2 !="Malindi")
+
 #remove NAs
 tsalag4_na <- filter(tsalag4, !is.na(Axis.1))
 tsalag4_na <- filter(tsalag4, !is.na(Axis.2))
